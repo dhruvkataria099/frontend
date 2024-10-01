@@ -4,6 +4,8 @@ import axios from 'axios'
 
 const App = () => {
 
+  axios.defaults.withCredentials = true
+  
   const [data, setdata] = useState({
     username: "",
     email: ""
@@ -28,6 +30,7 @@ const App = () => {
     e.preventDefault()
     try {
       const res = await axios.post(`${import.meta.env.VITE_KEY}api/createData`, data)
+       const res2 = await axios.post(`${import.meta.env.VITE_KEY}api/createCookie`, data)
       if (res.data.error) {
         return toast.error(res.data.error)
       }
